@@ -1,7 +1,7 @@
 # Личный проект «Типотека» [![Build status][travis-image]][travis-url]
 
 * Студент: [Сергей Семенов](https://up.htmlacademy.ru/nodejs/3/user/416777).
-* Наставник: [Артем Макаров].
+* Наставник: [Артем Макаров](https://github.com/Deepsick).
 
 ---
 
