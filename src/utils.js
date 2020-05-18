@@ -8,12 +8,9 @@ const getRandomInt = (min, max) => {
 };
 
 const editNums = (num) => {
-  if (num < 10) {
-    const numStr = num + ``;
-    num = numStr.padStart(2, `0`);
-  }
+  const editedNum = num.toString().padStart(2, `0`);
 
-  return num;
+  return editedNum;
 };
 
 const getRandomDate = () => {
@@ -35,13 +32,15 @@ const getRandomDate = () => {
 };
 
 const shuffle = (someArray) => {
-  someArray.forEach((item, index) => {
+  const copyOfArray = someArray.slice();
+
+  copyOfArray.forEach((item, index) => {
     const randomPosition = Math.floor(Math.random() * index);
 
-    [someArray[index], someArray[randomPosition]] = [someArray[randomPosition], someArray[index]];
+    [copyOfArray[index], copyOfArray[randomPosition]] = [copyOfArray[randomPosition], someArray[index]];
   });
 
-  return someArray;
+  return copyOfArray;
 };
 
 module.exports = {
