@@ -1,8 +1,11 @@
 'use strict';
 
-const fs = require(`fs`);
+const fs = require(`fs`).promises;
+
+const logger = require(`../../../logger`);
 
 const {
+  СliMessage,
   ExitCode
 } = require(`../../../constants`);
 
@@ -34,24 +37,24 @@ const generateCards = (count) => (
 
 module.exports = {
   name: `--generate`,
-  run(args) {
+
+  async run(args) {
     const [count] = args;
     const countCard = Number.parseInt(count, 10) || DEFAULT_COUNT;
     const content = JSON.stringify(generateCards(countCard));
 
     if (args > MAX_ADS) {
-      console.error(`No more than 1000 cards`);
+      console.error(logger.showError(СliMessage.LENGTH_ERROR));
       process.exit(ExitCode.ERROR);
     }
 
-    fs.writeFile(FILE_NAME, content, (err) => {
-      if (err) {
-        console.error(`Can't write data to file...`);
-        process.exit(ExitCode.ERROR);
-      }
-
-      console.info(`Operation success. File created.`);
+    try {
+      await fs.writeFile(FILE_NAME, content);
+      console.info(logger.showSuccess(СliMessage.SUCCESS));
       process.exit(ExitCode.SUCCESS);
-    });
+    } catch (error) {
+      console.error(logger.showError(СliMessage.WRITE_ERROR));
+      process.exit(ExitCode.ERROR);
+    }
   }
 };
