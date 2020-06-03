@@ -5,7 +5,7 @@ const fs = require(`fs`).promises;
 const logger = require(`../../../logger`);
 
 const {
-  cliMessages,
+  СliMessage,
   ExitCode
 } = require(`../../../constants`);
 
@@ -44,16 +44,16 @@ module.exports = {
     const content = JSON.stringify(generateCards(countCard));
 
     if (args > MAX_ADS) {
-      console.error(logger.showError(cliMessages.LENGTH_ERROR));
+      console.error(logger.showError(СliMessage.LENGTH_ERROR));
       process.exit(ExitCode.ERROR);
     }
 
     try {
       await fs.writeFile(FILE_NAME, content);
-      console.info(logger.showSuccess(cliMessages.SUCCESS));
+      console.info(logger.showSuccess(СliMessage.SUCCESS));
       process.exit(ExitCode.SUCCESS);
     } catch (error) {
-      console.error(logger.showError(cliMessages.WRITE_ERROR));
+      console.error(logger.showError(СliMessage.WRITE_ERROR));
       process.exit(ExitCode.ERROR);
     }
   }
