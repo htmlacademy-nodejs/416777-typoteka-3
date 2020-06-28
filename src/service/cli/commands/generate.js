@@ -5,6 +5,9 @@ const fs = require(`fs`).promises;
 const logger = require(`../../../logger`);
 
 const {
+  FILENAME,
+  MAX_ADS,
+  DEFAULT_COUNT,
   СliMessage,
   ExitCode,
   MockPath
@@ -16,10 +19,6 @@ const {
   shuffle,
   readContent
 } = require(`../../../utils`);
-
-const DEFAULT_COUNT = 1;
-const MAX_ADS = 1000;
-const FILE_NAME = `mocks.json`;
 
 const generateCards = (count, titles, categories, sentences) => (
   Array(count).fill({}).map(() => ({
@@ -44,16 +43,16 @@ module.exports = {
     const content = JSON.stringify(generateCards(countCard, titles, categories, sentences));
 
     if (args > MAX_ADS) {
-      console.error(logger.showError(СliMessage.LENGTH_ERROR));
+      logger.showError(СliMessage.LENGTH_ERROR);
       process.exit(ExitCode.ERROR);
     }
 
     try {
-      await fs.writeFile(FILE_NAME, content);
-      console.info(logger.showSuccess(СliMessage.SUCCESS));
+      await fs.writeFile(FILENAME, content);
+      logger.showSuccess(СliMessage.SUCCESS);
       process.exit(ExitCode.SUCCESS);
     } catch (error) {
-      console.error(logger.showError(СliMessage.WRITE_ERROR));
+      logger.showError(СliMessage.WRITE_ERROR);
       process.exit(ExitCode.ERROR);
     }
   }
