@@ -6,6 +6,9 @@ const TARGET_ARGS_INDEX = 1;
 const USER_ARGV_INDEX = 2;
 
 const FILENAME = `mocks.json`;
+const PUBLIC_DIR = `public`;
+const TEMPLATES_DIR = `templates`;
+
 const MAX_ADS = 1000;
 const DEFAULT_COUNT = 1;
 
@@ -45,6 +48,8 @@ module.exports = {
   TARGET_ARGS_INDEX,
   USER_ARGV_INDEX,
   FILENAME,
+  PUBLIC_DIR,
+  TEMPLATES_DIR,
   MAX_ADS,
   DEFAULT_COUNT,
   СliMessage,
