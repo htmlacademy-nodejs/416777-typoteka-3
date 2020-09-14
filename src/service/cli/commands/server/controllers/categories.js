@@ -1,6 +1,6 @@
 'use strict';
 
-const {HttpCode} = require(`../../../../constants`);
+const {HttpCode} = require(`../../../../../constants`);
 
 const CategoryModel = require(`../models/category`);
 const getMockData = require(`../lib/get-mock-data`);

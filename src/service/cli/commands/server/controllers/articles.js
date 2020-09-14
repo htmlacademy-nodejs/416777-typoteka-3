@@ -1,32 +1,16 @@
 'use strict';
 
-const {HttpCode} = require(`../../../../constants`);
+const {HttpCode} = require(`../../../../../constants`);
 const getMockData = require(`../lib/get-mock-data`);
 
 const ArticleModel = require(`../models/article`);
-const CommentModel = require(`../models/comment`);
 
 let articleService;
-let commentService;
 
 (async () => {
   const mockData = await getMockData();
   articleService = new ArticleModel(mockData);
-  commentService = new CommentModel(mockData);
 })();
-
-const checkExistArticle = (req, res) => {
-  const {articleId} = req.params;
-  const article = articleService.findOne(articleId);
-
-  if (!article) {
-    return res.status(HttpCode.NOT_FOUND)
-      .send(`Article with ${articleId} not found`);
-  }
-
-  res.locals.article = article;
-  return true;
-};
 
 const getArticles = async (req, res) => {
   try {
@@ -106,63 +90,12 @@ const deleteArticle = async (req, res) => {
   }
 };
 
-const getComments = async (req, res) => {
-  try {
-    checkExistArticle(req, res);
-
-    const {article} = res.locals;
-    const comments = await commentService.findAll(article);
-
-    return res.status(HttpCode.OK)
-      .json(comments);
-  } catch (error) {
-    return res.status(HttpCode.NOT_FOUND)
-    .send(`Not found`);
-  }
-};
-
-const deleteComment = async (req, res) => {
-  try {
-    checkExistArticle(req, res);
-
-    const {article} = res.locals;
-    const {commentId} = req.params;
-    const deletedComment = await commentService.drop(article, commentId);
-
-    if (!deletedComment) {
-      return res.status(HttpCode.NOT_FOUND)
-        .send(`Not found`);
-    }
-
-    return res.status(HttpCode.OK)
-      .json(deletedComment);
-  } catch (error) {
-    return res.status(HttpCode.NOT_FOUND)
-    .send(`Not found`);
-  }
-};
-
-const postComment = async (req, res) => {
-  try {
-    checkExistArticle(req, res);
-
-    const {article} = res.locals;
-    const comment = commentService.create(article, req.body);
-
-    return res.status(HttpCode.CREATED).json(comment);
-  } catch (error) {
-    return res.status(HttpCode.NOT_FOUND)
-    .send(`Not found`);
-  }
-};
-
-module.exports = {
+const articlesController = {
   getArticles,
   getArticle,
   postArticle,
   putArticle,
-  deleteArticle,
-  getComments,
-  deleteComment,
-  postComment
+  deleteArticle
 };
+
+module.exports = articlesController;

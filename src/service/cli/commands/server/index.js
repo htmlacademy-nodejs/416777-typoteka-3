@@ -4,8 +4,8 @@ const express = require(`express`);
 const app = express();
 const routes = require(`../server/routes`);
 
-const {DEFAULT_PORT, HttpCode, ServerMessage, API_PREFIX} = require(`../../../constants`);
-const logger = require(`../../../logger`);
+const {DEFAULT_PORT, HttpCode, ServerMessage, API_PREFIX} = require(`../../../../constants`);
+const logger = require(`../../../../logger`);
 
 app.use(express.json());
 app.use(API_PREFIX, routes);
