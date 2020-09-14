@@ -1,12 +1,14 @@
 'use strict';
 
 const fs = require(`fs`).promises;
-
+const {nanoid} = require(`nanoid`);
 const logger = require(`../../../logger`);
 
 const {
   FILENAME,
   MAX_ADS,
+  MAX_COMMENTS,
+  MAX_ID_LENGTH,
   DEFAULT_COUNT,
   СliMessage,
   ExitCode,
@@ -20,13 +22,24 @@ const {
   readContent
 } = require(`../../../utils`);
 
-const generateCards = (count, titles, categories, sentences) => (
+const generateComments = (count, comments) => {
+  return Array(count).fill({}).map(() => ({
+    id: nanoid(MAX_ID_LENGTH),
+    text: shuffle(comments)
+      .slice(0, getRandomInt(1, 3))
+      .join(` `)
+  }));
+};
+
+const generateCards = (count, titles, categories, sentences, comments) => (
   Array(count).fill({}).map(() => ({
+    id: nanoid(MAX_ID_LENGTH),
     title: titles[getRandomInt(0, titles.length - 1)],
     createdDate: getRandomDate(),
     announce: shuffle(sentences).slice(1, 5).join(` `),
     fullText: shuffle(sentences).slice(0, getRandomInt(1, sentences.length - 1)).join(` `),
     category: shuffle(categories).slice(0, getRandomInt(1, categories.length - 1)),
+    comments: generateComments(getRandomInt(1, MAX_COMMENTS), comments)
   }))
 );
 
@@ -37,10 +50,11 @@ module.exports = {
     const sentences = await readContent(MockPath.SENTENCES_PATH);
     const titles = await readContent(MockPath.TITLES_PATH);
     const categories = await readContent(MockPath.CATEGORIES_PATH);
+    const comments = await readContent(MockPath.COMMENTS_PATH);
 
     const [count] = args;
     const countCard = Number.parseInt(count, 10) || DEFAULT_COUNT;
-    const content = JSON.stringify(generateCards(countCard, titles, categories, sentences));
+    const content = JSON.stringify(generateCards(countCard, titles, categories, sentences, comments));
 
     if (args > MAX_ADS) {
       logger.showError(СliMessage.LENGTH_ERROR);

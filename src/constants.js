@@ -10,7 +10,11 @@ const PUBLIC_DIR = `public`;
 const TEMPLATES_DIR = `templates`;
 
 const MAX_ADS = 1000;
+const MAX_COMMENTS = 6;
+const MAX_ID_LENGTH = 5;
 const DEFAULT_COUNT = 1;
+
+const API_PREFIX = `/api`;
 
 const СliMessage = Object.freeze({
   LENGTH_ERROR: `No more than 1000 cards`,
@@ -31,15 +35,18 @@ const ExitCode = Object.freeze({
 const MockPath = Object.freeze({
   SENTENCES_PATH: `./data/sentences.txt`,
   TITLES_PATH: `./data/titles.txt`,
-  CATEGORIES_PATH: `./data/categories.txt`
+  CATEGORIES_PATH: `./data/categories.txt`,
+  COMMENTS_PATH: `./data/comments.txt`
 });
 
 const HttpCode = Object.freeze({
   OK: 200,
   NOT_FOUND: 404,
+  CREATED: 201,
   INTERNAL_SERVER_ERROR: 500,
   FORBIDDEN: 403,
   UNAUTHORIZED: 401,
+  BAD_REQUEST: 400
 });
 
 module.exports = {
@@ -51,7 +58,10 @@ module.exports = {
   PUBLIC_DIR,
   TEMPLATES_DIR,
   MAX_ADS,
+  MAX_COMMENTS,
+  MAX_ID_LENGTH,
   DEFAULT_COUNT,
+  API_PREFIX,
   СliMessage,
   ServerMessage,
   ExitCode,
