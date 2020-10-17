@@ -10,6 +10,8 @@ const loginRoutes = require(`./routes/login-routes`);
 const registrationRoutes = require(`./routes/registration-routes`);
 const searchRoutes = require(`./routes/search-routes`);
 const categoriesRoutes = require(`./routes/categories-routes`);
+const {getLogger} = require(`../logger`);
+const logger = getLogger();
 
 const {DEFAULT_PORT, PUBLIC_DIR, TEMPLATES_DIR} = require(`../constants`);
 
@@ -28,5 +30,5 @@ app.set(`views`, path.resolve(__dirname, TEMPLATES_DIR));
 app.set(`view engine`, `pug`);
 
 app.listen(DEFAULT_PORT, () => {
-  console.info(`Сервер запущен на ${DEFAULT_PORT} порту`);
+  logger.info(`Сервер запущен на ${DEFAULT_PORT} порту`);
 });
