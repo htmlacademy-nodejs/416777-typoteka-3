@@ -3,7 +3,7 @@
 const server = require(`./server/index`);
 const {DEFAULT_PORT, ServerMessage} = require(`../../../constants`);
 const {getLogger} = require(`../../../logger`);
-const logger = getLogger()
+const logger = getLogger();
 
 module.exports = {
   name: `--server`,
