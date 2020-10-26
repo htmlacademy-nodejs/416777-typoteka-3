@@ -8,6 +8,7 @@ const USER_ARGV_INDEX = 2;
 const FILENAME = `mocks.json`;
 const PUBLIC_DIR = `public`;
 const TEMPLATES_DIR = `templates`;
+const LOGS_DIR = `./src/service/logs/logs.log`;
 
 const MAX_ADS = 1000;
 const MAX_COMMENTS = 6;
@@ -49,6 +50,19 @@ const HttpCode = Object.freeze({
   BAD_REQUEST: 400
 });
 
+const ApiRoutes = Object.freeze({
+  ARTICLES: `/api/articles`,
+  CATEGORIES: `/api/categories`,
+  SEARCH: `/api/search`,
+});
+
+const LoggerMessage = Object.freeze({
+  ROUTE: `Route is `,
+  STATUS_CODE: `Status code is `,
+  NOT_FOUND: `Error, not found`,
+  BAD_REQUEST: `Error, bad request`
+});
+
 module.exports = {
   DEFAULT_COMMAND,
   DEFAULT_PORT,
@@ -57,6 +71,7 @@ module.exports = {
   FILENAME,
   PUBLIC_DIR,
   TEMPLATES_DIR,
+  LOGS_DIR,
   MAX_ADS,
   MAX_COMMENTS,
   MAX_ID_LENGTH,
@@ -66,5 +81,7 @@ module.exports = {
   ServerMessage,
   ExitCode,
   MockPath,
-  HttpCode
+  HttpCode,
+  ApiRoutes,
+  LoggerMessage
 };
