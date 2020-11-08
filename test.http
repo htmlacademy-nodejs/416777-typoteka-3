@@ -15,7 +15,7 @@ GET http://localhost:3000/api/articles HTTP/1.1
 
 # Запрашивает статью с идентификатором :id
 
-GET http://localhost:3000/api/articles/Aj6Fm HTTP/1.1
+GET http://localhost:3000/api/articles/EzC62 HTTP/1.1
 
 ###
 
@@ -57,7 +57,7 @@ Content-Type: application/json
 
 # Список комментариев
 
-GET http://localhost:3000/api/articles/tRdbr/comments HTTP/1.1
+GET http://localhost:3000/api/articles/EzC62/comments HTTP/1.1
 
 ###
 
