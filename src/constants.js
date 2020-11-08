@@ -7,9 +7,11 @@ const USER_ARGV_INDEX = 2;
 
 const FILENAME = `mocks.json`;
 const PUBLIC_DIR = `public`;
-const TEMPLATES_DIR = `templates`;
+const UPLOAD_DIR = `upload`;
+const TEMPLATES_DIR = `templates/pages`;
 const LOGS_DIR = `./src/service/logs/logs.log`;
 
+const TIMEOUT = 1000;
 const MAX_ADS = 1000;
 const MAX_COMMENTS = 6;
 const MAX_ID_LENGTH = 5;
@@ -69,9 +71,11 @@ module.exports = {
   TARGET_ARGS_INDEX,
   USER_ARGV_INDEX,
   FILENAME,
+  UPLOAD_DIR,
   PUBLIC_DIR,
   TEMPLATES_DIR,
   LOGS_DIR,
+  TIMEOUT,
   MAX_ADS,
   MAX_COMMENTS,
   MAX_ID_LENGTH,
