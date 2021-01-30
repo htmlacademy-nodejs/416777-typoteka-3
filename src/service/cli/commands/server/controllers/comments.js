@@ -13,7 +13,7 @@ const getComments = async (req, res) => {
   try {
     const mockData = await getMockData();
     const articleService = new ArticleModel(mockData);
-    const commentService = new CommentModel(mockData);
+    const commentService = new CommentModel();
 
     const {articleId} = req.params;
     const article = await articleService.findOne(articleId);
@@ -43,7 +43,7 @@ const deleteComment = async (req, res) => {
   try {
     const mockData = await getMockData();
     const articleService = new ArticleModel(mockData);
-    const commentService = new CommentModel(mockData);
+    const commentService = new CommentModel();
 
     const {articleId} = req.params;
     const article = await articleService.findOne(articleId);
@@ -81,7 +81,7 @@ const postComment = async (req, res) => {
   try {
     const mockData = await getMockData();
     const articleService = new ArticleModel(mockData);
-    const commentService = new CommentModel(mockData);
+    const commentService = new CommentModel();
 
     const {articleId} = req.params;
     const article = await articleService.findOne(articleId);

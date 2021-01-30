@@ -28,8 +28,6 @@ const getAddArticle = async (req, res) => {
 const getPostAddArticle = async (req, res) => {
   const {body, file} = req;
 
-  console.log(req.body)
-
   const articleData = {
     picture: file.filename,
     title: body.title,
