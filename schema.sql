@@ -18,8 +18,6 @@ CREATE TABLE articles(
   title VARCHAR(255) NOT NULL,
   announce TEXT NOT NULL,
   full_text TEXT NOT NULL,
-  type VARCHAR(5) NOT NULL,
-  picture VARCHAR(50) NOT NULL,
   created_at TIMESTAMP DEFAULT current_timestamp,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -38,7 +36,7 @@ CREATE TABLE articles_categories(
   article_id INTEGER NOT NULL,
   category_id INTEGER NOT NULL,
   PRIMARY KEY (article_id, category_id),
-  FOREIGN KEY (article_id) REFERENCES article(id),
+  FOREIGN KEY (article_id) REFERENCES articles(id),
   FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 
