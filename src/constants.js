@@ -30,6 +30,12 @@ const ServerMessage = Object.freeze({
   PENDING: `Ожидаю соединения на `
 });
 
+const DatabaseConnectMessage = Object.freeze({
+  TRY: `Trying to connect to database...`,
+  ERROR: `An error occured: `,
+  SUCCESS: `Connection to database established`
+});
+
 const ExitCode = Object.freeze({
   SUCCESS: 0,
   ERROR: 1
@@ -83,6 +89,7 @@ module.exports = {
   API_PREFIX,
   СliMessage,
   ServerMessage,
+  DatabaseConnectMessage,
   ExitCode,
   MockPath,
   HttpCode,
